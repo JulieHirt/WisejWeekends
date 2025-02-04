@@ -19,7 +19,7 @@ public class GameGrid
 	/// <param name="s">String that represents the object to be written to the grid</param>
 	/// <param name="x">x coordinate of the object</param>
 	/// <param name="y">y coordinate of the object</param>
-	public void writeToGrid(string s, int x, int y)
+	public void WriteToGrid(string s, int x, int y)
 	{
 		if (CheckValidCoordinates(x, y))
 		{
@@ -54,7 +54,7 @@ public class GameGrid
 	/// <param name="x">X coordinate of the square to be read from</param>
 	/// <param name="y">Y coordinate of the square to be read from</param>
 	/// <returns></returns>
-	public string readFromGrid(int x, int y)
+	public string ReadFromGrid(int x, int y)
 	{
 		if (CheckValidCoordinates(x, y))
 		{
