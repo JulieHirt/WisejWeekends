@@ -28,18 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Page1
-            // 
-            this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
-            this.Name = "Page1";
-            this.ResumeLayout(false);
+			this.GameCanvas = new Wisej.Web.PictureBox();
+			this.buttonUp = new Wisej.Web.Button();
+			((System.ComponentModel.ISupportInitialize)(this.GameCanvas)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// GameCanvas
+			// 
+			this.GameCanvas.BorderStyle = Wisej.Web.BorderStyle.Solid;
+			this.GameCanvas.Location = new System.Drawing.Point(3, 3);
+			this.GameCanvas.Name = "GameCanvas";
+			this.GameCanvas.Size = new System.Drawing.Size(640, 480);
+			// 
+			// buttonUp
+			// 
+			this.buttonUp.ImageSource = "scrollbar-arrow-up";
+			this.buttonUp.Location = new System.Drawing.Point(745, 141);
+			this.buttonUp.Name = "buttonUp";
+			this.buttonUp.Size = new System.Drawing.Size(57, 46);
+			this.buttonUp.TabIndex = 1;
+			this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
+			// 
+			// Page1
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+			this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
+			this.Controls.Add(this.buttonUp);
+			this.Controls.Add(this.GameCanvas);
+			this.Name = "Page1";
+			this.Size = new System.Drawing.Size(1281, 430);
+			((System.ComponentModel.ISupportInitialize)(this.GameCanvas)).EndInit();
+			this.ResumeLayout(false);
 
         }
 
-        #endregion
+		#endregion
 
-    }
+		private Wisej.Web.PictureBox GameCanvas;
+		private Wisej.Web.Button buttonUp;
+	}
 }
 

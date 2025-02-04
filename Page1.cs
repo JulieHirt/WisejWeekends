@@ -8,5 +8,10 @@ namespace Game
         {
             InitializeComponent();
         }
-    }
+
+		private void buttonUp_Click(object sender, System.EventArgs e)
+		{
+            AlertBox.Show("Clicked!");
+		}
+	}
 }
