@@ -39,6 +39,7 @@
 			this.GameCanvas.Location = new System.Drawing.Point(3, 3);
 			this.GameCanvas.Name = "GameCanvas";
 			this.GameCanvas.Size = new System.Drawing.Size(640, 480);
+			this.GameCanvas.Paint += new Wisej.Web.PaintEventHandler(this.GameCanvas_Paint);
 			// 
 			// buttonUp
 			// 
@@ -56,7 +57,7 @@
 			this.Controls.Add(this.buttonUp);
 			this.Controls.Add(this.GameCanvas);
 			this.Name = "Page1";
-			this.Size = new System.Drawing.Size(1281, 430);
+			this.Size = new System.Drawing.Size(1264, 430);
 			((System.ComponentModel.ISupportInitialize)(this.GameCanvas)).EndInit();
 			this.ResumeLayout(false);
 
