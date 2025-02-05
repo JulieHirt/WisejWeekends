@@ -1,4 +1,5 @@
-﻿using Wisej.Web;
+﻿using System.Drawing;
+using Wisej.Web;
 
 namespace Game
 {
@@ -13,9 +14,11 @@ namespace Game
 		{
             AlertBox.Show("Clicked!");
             GameGrid grid = new GameGrid(5,5);
-            grid.writeToGrid("hello", 1, 4);
-            AlertBox.Show(grid.readFromGrid(1,4));
+            grid.WriteToGrid("hello", 1, 4);
+            AlertBox.Show(grid.ReadFromGrid(1,4));
 
 		}
+
+		
 	}
 }
