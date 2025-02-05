@@ -3,6 +3,17 @@
 public class GameGrid
 {
 	private string[,] grid;
+
+	/// <summary>
+	/// Number of squares the grid has along the x axis 
+	/// </summary>
+	public int xDimension;
+
+	/// <summary>
+	/// Number of squares the grid has along the y axis
+	/// </summary>
+	public int yDimension;
+
 	/// <summary>
 	/// Class that contains a 2D array of strings which represents all objects in the game
 	/// </summary>
@@ -11,6 +22,8 @@ public class GameGrid
 	public GameGrid(int XDimension, int YDimension)
 	{
 		grid = new string[XDimension, YDimension];
+		xDimension = XDimension;
+		yDimension = YDimension;
 	}
 
 	/// <summary>

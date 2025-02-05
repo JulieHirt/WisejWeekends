@@ -46,6 +46,14 @@ namespace Game
 			e.Graphics.DrawImage(image, point);
 
 			//TODO: loop through each square in the grid and paint it
+			for (int x = 0; x < grid.xDimension; x++)
+			{
+				for (int y = 0; y < grid.yDimension; y++)
+				{
+					var val = grid.ReadFromGrid(x,y);
+					AlertBox.Show(val);
+				}
+		}
 		}
 
 	}
