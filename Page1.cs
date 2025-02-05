@@ -29,29 +29,32 @@ namespace Game
 
 		private void buttonUp_Click(object sender, System.EventArgs e)
 		{
-            grid.WriteToGrid("player", 1, 4);
-            AlertBox.Show(grid.ReadFromGrid(1,4));
+			grid.WriteToGrid("player", 1, 1);
 
 			//redraw
 			GameCanvas.Invalidate();
 
 		}
 
-
 		private void GameCanvas_Paint(object sender, PaintEventArgs e)
 		{
-			int FIELD_DIMENSION = 16;
-			var image = Properties.Resources.player;
-			Point point = new Point(1 * FIELD_DIMENSION, 4 * FIELD_DIMENSION);
-			e.Graphics.DrawImage(image, point);
+			var image = Properties.Resources.grass;//set image to grass by default
 
-			//TODO: loop through each square in the grid and paint it
+			//Loop through each square in the grid and paint it
 			for (int x = 0; x < grid.xDimension; x++)
 			{
 				for (int y = 0; y < grid.yDimension; y++)
 				{
 					var val = grid.ReadFromGrid(x,y);
-					AlertBox.Show(val);
+					if (val != null)
+					{
+						Point point = new Point(x * FIELD_DIMENSION, y * FIELD_DIMENSION);
+						if (val == "player")
+						{
+							image = Properties.Resources.player;
+						}
+						e.Graphics.DrawImage(image, point);
+					}
 				}
 		}
 		}
