@@ -25,15 +25,18 @@ namespace Game
 
 			//set the game grid size (stores info about object positions which we then render to the canvas)
 			grid = new GameGrid(NUMBER_OF_FIELDS_X, NUMBER_OF_FIELDS_Y);
+
+			//initial set up of player and walls
+			grid.WriteToGrid("player", 1, 1);
+			grid.WriteToGrid("wall", 20, 10);
+			grid.WriteToGrid("wall", 10, 20);
+			grid.WriteToGrid("wall", 5, 15);
 		}
 
 		private void buttonUp_Click(object sender, System.EventArgs e)
 		{
-			grid.WriteToGrid("player", 1, 1);
-
 			//redraw
 			GameCanvas.Invalidate();
-
 		}
 
 		private void GameCanvas_Paint(object sender, PaintEventArgs e)
@@ -52,6 +55,11 @@ namespace Game
 						if (val == "player")
 						{
 							image = Properties.Resources.player;
+						}
+						else
+							if (val == "wall")
+						{
+							image = Properties.Resources.wall;
 						}
 						e.Graphics.DrawImage(image, point);
 					}
