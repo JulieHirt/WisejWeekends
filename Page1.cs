@@ -16,6 +16,11 @@ namespace Game
 		// stores info about object positions which we then render to the canvas
 		GameGrid grid;
 
+		//player position in X and Y- used for calculating if pleyer can move, ie if they will crash into a wall
+		//Location should always match the "player" string in GameGrid
+		int playerX = 1;
+		int playerY = 1;
+
 		public Page1()
         {
             InitializeComponent();
@@ -27,7 +32,7 @@ namespace Game
 			grid = new GameGrid(NUMBER_OF_FIELDS_X, NUMBER_OF_FIELDS_Y);
 
 			//initial set up of player and walls
-			grid.WriteToGrid("player", 1, 1);
+			grid.WriteToGrid("player", playerX, playerY);
 			grid.WriteToGrid("wall", 20, 10);
 			grid.WriteToGrid("wall", 10, 20);
 			grid.WriteToGrid("wall", 5, 15);
