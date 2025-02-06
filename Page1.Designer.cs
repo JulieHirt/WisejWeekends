@@ -57,7 +57,7 @@
 			this.Controls.Add(this.buttonUp);
 			this.Controls.Add(this.GameCanvas);
 			this.Name = "Page1";
-			this.Size = new System.Drawing.Size(1264, 430);
+			this.Size = new System.Drawing.Size(1247, 430);
 			((System.ComponentModel.ISupportInitialize)(this.GameCanvas)).EndInit();
 			this.ResumeLayout(false);
 

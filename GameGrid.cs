@@ -36,10 +36,34 @@ public class GameGrid
 	{
 		if (CheckValidCoordinates(x, y))
 		{
-			//TODO: Add code here to check for collisions when attempting to write over an object
 				grid[x, y] = s;
 		}
 	}
+
+	/// <summary>
+	/// Attempts to move an object in the grid. May fail if collision happens (ie player running into wall)
+	/// </summary>
+	/// <param name="s">string representing the object to be moved</param>
+	/// <param name="xPrevious">Previous x coordinate of the object before attempting to move</param>
+	/// <param name="yPrevious">Previous y coordinate of the object before attempting to move</param>
+	/// <param name="xNew">Potential new x coordinate of the object if movement is sucessful</param>
+	/// <param name="yNew">Potential new y coordinate of the object if movement is sucessful</param>
+	public void MovementAttemptWriteToGrid(string s, int xPrevious, int yPrevious, int xNew, int yNew)
+	{
+		if (CheckValidCoordinates(xNew, yNew))
+		{
+			//TODO: Add code here to check for collisions when attempting to write over an object
+
+			//can move into empty space
+			if (grid[xNew, yNew] == null)
+			{
+				grid[xNew, yNew] = s;
+				grid[xPrevious, yPrevious] = null;
+			}
+		}
+	}
+
+
 	/// <summary>
 	/// Check that the given coordinates correspond to a space inside the grid
 	/// </summary>

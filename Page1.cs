@@ -35,6 +35,7 @@ namespace Game
 
 		private void buttonUp_Click(object sender, System.EventArgs e)
 		{
+			grid.MovementAttemptWriteToGrid("player", 1, 1, 1, 0);
 			//redraw
 			GameCanvas.Invalidate();
 		}
