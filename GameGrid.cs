@@ -48,19 +48,44 @@ public class GameGrid
 	/// <param name="yPrevious">Previous y coordinate of the object before attempting to move</param>
 	/// <param name="xNew">Potential new x coordinate of the object if movement is sucessful</param>
 	/// <param name="yNew">Potential new y coordinate of the object if movement is sucessful</param>
-	public void MovementAttemptWriteToGrid(string s, int xPrevious, int yPrevious, int xNew, int yNew)
+	/// <returns>The new location of the object if it sucessfully moved; The old location if it did not move.</returns>
+	public int[] MovementAttemptWriteToGrid(string s, int xPrevious, int yPrevious, int xNew, int yNew)
 	{
 		if (CheckValidCoordinates(xNew, yNew))
 		{
-			//TODO: Add code here to check for collisions when attempting to write over an object
-
 			//can move into empty space
 			if (grid[xNew, yNew] == null)
 			{
 				grid[xNew, yNew] = s;
 				grid[xPrevious, yPrevious] = null;
+
+				int[] point = { xNew, yNew };
+				return point;
+			}
+			else //something is moving into the same space as something else- collision code
+			//TODO: Add more collisions here eg, bullet and player
+			{
+				//if player tries to occupy the same space as a wall
+				if(grid[xPrevious, yPrevious] == "player" && grid[xNew, yNew] == "wall")
+				{
+					int[] point = { xPrevious, yPrevious };
+					return point;
+				}
+				else
+				{
+					//something is moving into the same space as something else- stop it
+					int[] point = { xPrevious, yPrevious };
+					return point;
+				}
 			}
 		}
+		else
+		{
+			//new coordinates are not valid- object would go off the grid
+			int[] point = { xPrevious, yPrevious };
+			return point;
+		}
+		
 	}
 
 

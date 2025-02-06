@@ -41,30 +41,30 @@ namespace Game
 		private void buttonUp_Click(object sender, System.EventArgs e)
 		{
 			//note that the upper left corner is 0,0 - thus to go up 1 square we subtract 1 from the y coordinate
-			grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX, playerY-1);
-			playerY -= 1;
+			int[] newPosition = grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX, playerY-1);
+			playerY = newPosition[1];
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonDown_Click(object sender, System.EventArgs e)
 		{
 			//note that the upper left corner is 0,0 - thus to go down 1 square we add 1 to the y coordinate
-			grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX, playerY + 1);
-			playerY += 1;
+			int[] newPosition = grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX, playerY + 1);
+			playerY = newPosition[1];
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonRight_Click(object sender, System.EventArgs e)
 		{
-			grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX+1, playerY);
-			playerX += 1;
+			int[] newPosition = grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX+1, playerY);
+			playerX = newPosition[0];
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonLeft_Click(object sender, System.EventArgs e)
 		{
-			grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX-1, playerY);
-			playerX -= 1;
+			int[] newPosition = grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX-1, playerY);
+			playerX = newPosition[0];
 			//redraw
 			GameCanvas.Invalidate();
 		}
