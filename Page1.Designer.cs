@@ -60,6 +60,7 @@
 			this.buttonRight.Name = "buttonRight";
 			this.buttonRight.Size = new System.Drawing.Size(50, 50);
 			this.buttonRight.TabIndex = 3;
+			this.buttonRight.Click += new System.EventHandler(this.buttonRight_Click);
 			// 
 			// buttonLeft
 			// 
@@ -68,6 +69,7 @@
 			this.buttonLeft.Name = "buttonLeft";
 			this.buttonLeft.Size = new System.Drawing.Size(50, 50);
 			this.buttonLeft.TabIndex = 5;
+			this.buttonLeft.Click += new System.EventHandler(this.buttonLeft_Click);
 			// 
 			// buttonDown
 			// 
@@ -76,6 +78,7 @@
 			this.buttonDown.Name = "buttonDown";
 			this.buttonDown.Size = new System.Drawing.Size(50, 50);
 			this.buttonDown.TabIndex = 6;
+			this.buttonDown.Click += new System.EventHandler(this.buttonDown_Click);
 			// 
 			// Page1
 			// 
