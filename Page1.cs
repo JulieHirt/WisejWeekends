@@ -18,10 +18,6 @@ namespace Game
 
 		//the player GameObject
 		Player player;
-		//player position in X and Y- used for calculating if player can move, ie if they will crash into a wall
-		//Location should always match the "player" string in GameGrid
-		int playerX = 1;
-		int playerY = 1;
 
 		public Page1()
         {
@@ -46,30 +42,26 @@ namespace Game
 		private void buttonUp_Click(object sender, System.EventArgs e)
 		{
 			//note that the upper left corner is 0,0 - thus to go up 1 square we subtract 1 from the y coordinate
-			int[] newPosition = grid.MovementAttemptWriteToGrid(player, playerX, playerY, playerX, playerY-1);
-			playerY = newPosition[1];
+			grid.MovementAttemptWriteToGrid(player, player.x, player.y-1);
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonDown_Click(object sender, System.EventArgs e)
 		{
 			//note that the upper left corner is 0,0 - thus to go down 1 square we add 1 to the y coordinate
-			int[] newPosition = grid.MovementAttemptWriteToGrid(player, playerX, playerY, playerX, playerY + 1);
-			playerY = newPosition[1];
+			grid.MovementAttemptWriteToGrid(player, player.x, player.y + 1);
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonRight_Click(object sender, System.EventArgs e)
 		{
-			int[] newPosition = grid.MovementAttemptWriteToGrid(player, playerX, playerY, playerX+1, playerY);
-			playerX = newPosition[0];
+			grid.MovementAttemptWriteToGrid(player, player.x+1, player.y);
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonLeft_Click(object sender, System.EventArgs e)
 		{
-			int[] newPosition = grid.MovementAttemptWriteToGrid(player, playerX, playerY, playerX-1, playerY);
-			playerX = newPosition[0];
+			grid.MovementAttemptWriteToGrid(player, player.x-1, player.y);
 			//redraw
 			GameCanvas.Invalidate();
 		}

@@ -43,13 +43,13 @@ public class GameGrid
 	/// Attempts to move an object in the grid. May fail if collision happens (ie player running into wall)
 	/// </summary>
 	/// <param name="g">GameObject to be moved</param>
-	/// <param name="xPrevious">Previous x coordinate of the object before attempting to move</param>
-	/// <param name="yPrevious">Previous y coordinate of the object before attempting to move</param>
 	/// <param name="xNew">Potential new x coordinate of the object if movement is sucessful</param>
 	/// <param name="yNew">Potential new y coordinate of the object if movement is sucessful</param>
 	/// <returns>The new location of the object if it sucessfully moved; The old location if it did not move.</returns>
-	public int[] MovementAttemptWriteToGrid(GameObject g, int xPrevious, int yPrevious, int xNew, int yNew)
+	public void MovementAttemptWriteToGrid(GameObject g, int xNew, int yNew)
 	{
+		int xPrevious = g.x;
+		int yPrevious = g.y;
 		if (CheckValidCoordinates(xNew, yNew))
 		{
 			//can move into empty space
@@ -58,32 +58,36 @@ public class GameGrid
 				grid[xNew, yNew] = g;
 				grid[xPrevious, yPrevious] = null;
 
-				int[] point = { xNew, yNew };
-				return point;
+				//set the x and y coordinates of the GameObject to the new position
+				//important so that they match the coordinates of the grid
+				g.x = xNew;
+				g.y = yNew;
 			}
-			else //something is moving into the same space as something else- collision code
-			//TODO: Add more collisions here eg, bullet and player
-			{
-				//if player tries to occupy the same space as a wall
-				if(grid[xPrevious, yPrevious].GetType() == typeof(Player) && grid[xNew, yNew].GetType() == typeof(Wall))
-				{
-					int[] point = { xPrevious, yPrevious };
-					return point;
-				}
-				else
-				{
-					//something is moving into the same space as something else- stop it
-					int[] point = { xPrevious, yPrevious };
-					return point;
-				}
-			}
+			//No need to run this code- nothing changes
+			//else //something is moving into the same space as something else- collision code
+			////TODO: Add more collisions here eg, bullet and player
+			//{
+			//	//if player tries to occupy the same space as a wall
+			//	if(grid[xPrevious, yPrevious].GetType() == typeof(Player) && grid[xNew, yNew].GetType() == typeof(Wall))
+			//	{
+			//		g.x = xPrevious;
+			//		g.y = yPrevious;
+			//	}
+			//	else
+			//	{
+			//		//something is moving into the same space as something else- stop it
+			//		g.x = xPrevious;
+			//		g.y = yPrevious;
+			//	}
+			//}
 		}
-		else
-		{
-			//new coordinates are not valid- object would go off the grid
-			int[] point = { xPrevious, yPrevious };
-			return point;
-		}
+		//No need to run this code- nothing changes
+		//else
+		//{
+		//	//new coordinates are not valid- object would go off the grid
+		//	g.x = xPrevious;
+		//	g.y = yPrevious;
+		//}
 		
 	}
 
