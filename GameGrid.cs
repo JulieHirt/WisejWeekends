@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Game;
+using System;
 
 public class GameGrid
 {
-	private string[,] grid;
+	private GameObject[,] grid;
 
 	/// <summary>
 	/// Number of squares the grid has along the x axis 
@@ -21,7 +22,7 @@ public class GameGrid
 	/// <param name="YDimension">Number of squares the grid has vertically</param>
 	public GameGrid(int XDimension, int YDimension)
 	{
-		grid = new string[XDimension, YDimension];
+		grid = new GameObject[XDimension, YDimension];
 		xDimension = XDimension;
 		yDimension = YDimension;
 	}
@@ -29,34 +30,34 @@ public class GameGrid
 	/// <summary>
 	/// Write to a grid square
 	/// </summary>
-	/// <param name="s">String that represents the object to be written to the grid</param>
+	/// <param name="g">GameObject to be written to the grid</param>
 	/// <param name="x">x coordinate of the object</param>
 	/// <param name="y">y coordinate of the object</param>
-	public void WriteToGrid(string s, int x, int y)
+	public void WriteToGrid(GameObject g, int x, int y)
 	{
 		if (CheckValidCoordinates(x, y))
 		{
-				grid[x, y] = s;
+				grid[x, y] = g;
 		}
 	}
 
 	/// <summary>
 	/// Attempts to move an object in the grid. May fail if collision happens (ie player running into wall)
 	/// </summary>
-	/// <param name="s">string representing the object to be moved</param>
+	/// <param name="g">GameObject to be moved</param>
 	/// <param name="xPrevious">Previous x coordinate of the object before attempting to move</param>
 	/// <param name="yPrevious">Previous y coordinate of the object before attempting to move</param>
 	/// <param name="xNew">Potential new x coordinate of the object if movement is sucessful</param>
 	/// <param name="yNew">Potential new y coordinate of the object if movement is sucessful</param>
 	/// <returns>The new location of the object if it sucessfully moved; The old location if it did not move.</returns>
-	public int[] MovementAttemptWriteToGrid(string s, int xPrevious, int yPrevious, int xNew, int yNew)
+	public int[] MovementAttemptWriteToGrid(GameObject g, int xPrevious, int yPrevious, int xNew, int yNew)
 	{
 		if (CheckValidCoordinates(xNew, yNew))
 		{
 			//can move into empty space
 			if (grid[xNew, yNew] == null)
 			{
-				grid[xNew, yNew] = s;
+				grid[xNew, yNew] = g;
 				grid[xPrevious, yPrevious] = null;
 
 				int[] point = { xNew, yNew };
@@ -66,7 +67,7 @@ public class GameGrid
 			//TODO: Add more collisions here eg, bullet and player
 			{
 				//if player tries to occupy the same space as a wall
-				if(grid[xPrevious, yPrevious] == "player" && grid[xNew, yNew] == "wall")
+				if(grid[xPrevious, yPrevious].GetType() == typeof(Player) && grid[xNew, yNew].GetType() == typeof(Wall))
 				{
 					int[] point = { xPrevious, yPrevious };
 					return point;
@@ -116,7 +117,7 @@ public class GameGrid
 	/// <param name="x">X coordinate of the square to be read from</param>
 	/// <param name="y">Y coordinate of the square to be read from</param>
 	/// <returns></returns>
-	public string ReadFromGrid(int x, int y)
+	public GameObject ReadFromGrid(int x, int y)
 	{
 		if (CheckValidCoordinates(x, y))
 		{
@@ -124,7 +125,7 @@ public class GameGrid
 		}
 		else
 		{
-			return "error";
+			return new GameObject();
 		}
 	}
 }

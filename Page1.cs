@@ -16,7 +16,7 @@ namespace Game
 		// stores info about object positions which we then render to the canvas
 		GameGrid grid;
 
-		//player position in X and Y- used for calculating if pleyer can move, ie if they will crash into a wall
+		//player position in X and Y- used for calculating if player can move, ie if they will crash into a wall
 		//Location should always match the "player" string in GameGrid
 		int playerX = 1;
 		int playerY = 1;
@@ -32,16 +32,16 @@ namespace Game
 			grid = new GameGrid(NUMBER_OF_FIELDS_X, NUMBER_OF_FIELDS_Y);
 
 			//initial set up of player and walls
-			grid.WriteToGrid("player", playerX, playerY);
-			grid.WriteToGrid("wall", 20, 10);
-			grid.WriteToGrid("wall", 10, 20);
-			grid.WriteToGrid("wall", 5, 15);
+			grid.WriteToGrid(new Player(), playerX, playerY);
+			grid.WriteToGrid(new Wall(), 20, 10);
+			grid.WriteToGrid(new Wall(), 10, 20);
+			grid.WriteToGrid(new Wall(), 5, 15);
 		}
 
 		private void buttonUp_Click(object sender, System.EventArgs e)
 		{
 			//note that the upper left corner is 0,0 - thus to go up 1 square we subtract 1 from the y coordinate
-			int[] newPosition = grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX, playerY-1);
+			int[] newPosition = grid.MovementAttemptWriteToGrid(new Player(), playerX, playerY, playerX, playerY-1);
 			playerY = newPosition[1];
 			//redraw
 			GameCanvas.Invalidate();
@@ -49,21 +49,21 @@ namespace Game
 		private void buttonDown_Click(object sender, System.EventArgs e)
 		{
 			//note that the upper left corner is 0,0 - thus to go down 1 square we add 1 to the y coordinate
-			int[] newPosition = grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX, playerY + 1);
+			int[] newPosition = grid.MovementAttemptWriteToGrid(new Player(), playerX, playerY, playerX, playerY + 1);
 			playerY = newPosition[1];
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonRight_Click(object sender, System.EventArgs e)
 		{
-			int[] newPosition = grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX+1, playerY);
+			int[] newPosition = grid.MovementAttemptWriteToGrid(new Player(), playerX, playerY, playerX+1, playerY);
 			playerX = newPosition[0];
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonLeft_Click(object sender, System.EventArgs e)
 		{
-			int[] newPosition = grid.MovementAttemptWriteToGrid("player", playerX, playerY, playerX-1, playerY);
+			int[] newPosition = grid.MovementAttemptWriteToGrid(new Player(), playerX, playerY, playerX-1, playerY);
 			playerX = newPosition[0];
 			//redraw
 			GameCanvas.Invalidate();
@@ -81,12 +81,12 @@ namespace Game
 					if (val != null)
 					{
 						Point point = new Point(x * FIELD_DIMENSION, y * FIELD_DIMENSION);
-						if (val == "player")
+						if (val.GetType() == typeof(Player))
 						{
 							image = Properties.Resources.player;
 						}
 						else
-							if (val == "wall")
+							if (val.GetType() == typeof(Wall))
 						{
 							image = Properties.Resources.wall;
 						}
