@@ -5,5 +5,16 @@
 	/// </summary>
 	public class Player:GameObject
 	{
+		/// <summary>
+		/// An ID to indicate which player this is. Will be used when there are multiple players.
+		/// </summary>
+		public int ID;
+
+		public Player(int id, int x, int y)
+		{
+			ID = id;
+			xCoordinate = x;
+			yCoordinate = y;
+		}
 	}
 }
