@@ -10,11 +10,9 @@
 		/// </summary>
 		public int ID;
 
-		public Player(int id, int x, int y)
+		public Player(int id, int xCoord, int yCoord) : base(xCoord, yCoord)
 		{
 			ID = id;
-			xCoordinate = x;
-			yCoordinate = y;
 		}
 	}
 }

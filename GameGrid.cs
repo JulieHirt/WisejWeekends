@@ -31,13 +31,11 @@ public class GameGrid
 	/// Write to a grid square
 	/// </summary>
 	/// <param name="g">GameObject to be written to the grid</param>
-	/// <param name="x">x coordinate of the object</param>
-	/// <param name="y">y coordinate of the object</param>
-	public void WriteToGrid(GameObject g, int x, int y)
+	public void WriteToGrid(GameObject g)
 	{
-		if (CheckValidCoordinates(x, y))
+		if (CheckValidCoordinates(g.x, g.y))
 		{
-				grid[x, y] = g;
+				grid[g.x, g.y] = g;
 		}
 	}
 
@@ -125,7 +123,7 @@ public class GameGrid
 		}
 		else
 		{
-			return new GameObject();
+			return new GameObject(x, y);
 		}
 	}
 }

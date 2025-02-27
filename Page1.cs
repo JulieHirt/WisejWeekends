@@ -37,10 +37,10 @@ namespace Game
 			player = new Player(1, 1, 1);
 
 			//initial set up of player and walls
-			grid.WriteToGrid(player, playerX, playerY);
-			grid.WriteToGrid(new Wall(), 20, 10);
-			grid.WriteToGrid(new Wall(), 10, 20);
-			grid.WriteToGrid(new Wall(), 5, 15);
+			grid.WriteToGrid(player);
+			grid.WriteToGrid(new Wall(20,10));
+			grid.WriteToGrid(new Wall(10,20));
+			grid.WriteToGrid(new Wall(5,15));
 		}
 
 		private void buttonUp_Click(object sender, System.EventArgs e)

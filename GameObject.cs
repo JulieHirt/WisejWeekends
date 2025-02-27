@@ -8,11 +8,17 @@
 		/// <summary>
 		/// The x coordinate of the object within the GameGrid
 		/// </summary>
-		public int xCoordinate;
+		public int x;
 
 		/// <summary>
 		/// The y coordinate of the object within the GameGrid
 		/// </summary>
-		public int yCoordinate;
+		public int y;
+
+		public GameObject(int xCoord, int yCoord)
+		{
+			x = xCoord;
+			y = yCoord;
+		}
 	}
 }
