@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using Wisej.Web;
 
 namespace Game
@@ -38,6 +39,9 @@ namespace Game
 			grid.WriteToGrid(new Wall(10,20));
 			grid.WriteToGrid(new Wall(5,15));
 			grid.WriteToGrid(new Bullet(10, 15, 1, 0));
+			grid.WriteToGrid(new Bullet(10, 16,-1, 0));
+			grid.WriteToGrid(new Bullet(6, 20, 0, 1));
+			grid.WriteToGrid(new Bullet(6, 5, 0, -1));
 		}
 
 		private void buttonUp_Click(object sender, System.EventArgs e)
@@ -76,6 +80,7 @@ namespace Game
 		/// </summary>
 		public void MoveBullets()
 		{
+			List < Bullet > bulletList = new List<Bullet>();
 			for (int x = 0; x < grid.xDimension; x++)
 			{
 				for (int y = 0; y < grid.yDimension; y++)
@@ -86,10 +91,16 @@ namespace Game
 						if (val.GetType() == typeof(Bullet))
 						{
 							Bullet bullet = (Bullet)val;
-							grid.MovementAttemptWriteToGrid(bullet, bullet.x + bullet.xVelocity, bullet.y + bullet.yVelocity);
+							bulletList.Add(bullet);
+							
 						}
 					}
 				}
+			}
+
+			foreach (Bullet bullet in bulletList)
+			{
+				grid.MovementAttemptWriteToGrid(bullet, bullet.x + bullet.xVelocity, bullet.y + bullet.yVelocity);
 			}
 		}
 		private void GameCanvas_Paint(object sender, PaintEventArgs e)
