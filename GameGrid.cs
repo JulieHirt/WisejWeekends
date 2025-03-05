@@ -1,10 +1,12 @@
 ﻿using Game;
 using System;
+using System.Collections.Generic;
 
 public class GameGrid
 {
 	private GameObject[,] grid;
 
+	private List<Bullet> bulletList;
 	/// <summary>
 	/// Number of squares the grid has along the x axis 
 	/// </summary>
@@ -25,6 +27,9 @@ public class GameGrid
 		grid = new GameObject[XDimension, YDimension];
 		xDimension = XDimension;
 		yDimension = YDimension;
+
+		bulletList = new List<Bullet>();
+
 	}
 
 	/// <summary>
@@ -36,6 +41,11 @@ public class GameGrid
 		if (CheckValidCoordinates(g.x, g.y))
 		{
 				grid[g.x, g.y] = g;
+			if(g.GetType() == typeof(Bullet))
+			{
+				Bullet b = (Bullet)g;
+				bulletList.Add(b);
+			}
 		}
 	}
 
@@ -128,6 +138,18 @@ public class GameGrid
 		else
 		{
 			return new GameObject(x, y);
+		}
+	}
+
+	/// <summary>
+	/// Move all bullets according to their velocity
+	/// </summary>
+	public void MoveBullets()
+	{
+
+		foreach (Bullet bullet in bulletList)
+		{
+			MovementAttemptWriteToGrid(bullet, bullet.x + bullet.xVelocity, bullet.y + bullet.yVelocity);
 		}
 	}
 }

@@ -48,7 +48,7 @@ namespace Game
 		{
 			//note that the upper left corner is 0,0 - thus to go up 1 square we subtract 1 from the y coordinate
 			grid.MovementAttemptWriteToGrid(player, player.x, player.y-1);
-			MoveBullets();
+			grid.MoveBullets();
 			//redraw
 			GameCanvas.Invalidate();
 		}
@@ -56,53 +56,26 @@ namespace Game
 		{
 			//note that the upper left corner is 0,0 - thus to go down 1 square we add 1 to the y coordinate
 			grid.MovementAttemptWriteToGrid(player, player.x, player.y + 1);
-			MoveBullets();
+			grid.MoveBullets();
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonRight_Click(object sender, System.EventArgs e)
 		{
 			grid.MovementAttemptWriteToGrid(player, player.x+1, player.y);
-			MoveBullets();
+			grid.MoveBullets();
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonLeft_Click(object sender, System.EventArgs e)
 		{
 			grid.MovementAttemptWriteToGrid(player, player.x-1, player.y);
-			MoveBullets();
+			grid.MoveBullets();
 			//redraw
 			GameCanvas.Invalidate();
 		}
 
-		/// <summary>
-		/// Move all bullets according to their velocity
-		/// </summary>
-		public void MoveBullets()
-		{
-			List < Bullet > bulletList = new List<Bullet>();
-			for (int x = 0; x < grid.xDimension; x++)
-			{
-				for (int y = 0; y < grid.yDimension; y++)
-				{
-					var val = grid.ReadFromGrid(x, y);
-					if (val != null)
-					{
-						if (val.GetType() == typeof(Bullet))
-						{
-							Bullet bullet = (Bullet)val;
-							bulletList.Add(bullet);
-							
-						}
-					}
-				}
-			}
-
-			foreach (Bullet bullet in bulletList)
-			{
-				grid.MovementAttemptWriteToGrid(bullet, bullet.x + bullet.xVelocity, bullet.y + bullet.yVelocity);
-			}
-		}
+		
 		private void GameCanvas_Paint(object sender, PaintEventArgs e)
 		{
 			var image = Properties.Resources.grass;//set image to grass by default
