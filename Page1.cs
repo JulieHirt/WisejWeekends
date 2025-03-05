@@ -34,14 +34,14 @@ namespace Game
 			player = new Player(1, 1, 1);
 
 			//initial set up of player and walls
-			grid.WriteToGrid(player);
-			grid.WriteToGrid(new Wall(20,10));
-			grid.WriteToGrid(new Wall(10,20));
-			grid.WriteToGrid(new Wall(5,15));
-			grid.WriteToGrid(new Bullet(10, 15, 1, 0));
-			grid.WriteToGrid(new Bullet(10, 16,-1, 0));
-			grid.WriteToGrid(new Bullet(6, 20, 0, 1));
-			grid.WriteToGrid(new Bullet(6, 5, 0, -1));
+			grid.AttemptWriteToGrid(player);
+			grid.AttemptWriteToGrid(new Wall(20,10));
+			grid.AttemptWriteToGrid(new Wall(10,20));
+			grid.AttemptWriteToGrid(new Wall(5,15));
+			grid.AttemptWriteToGrid(new Bullet(10, 15, 1, 0));
+			grid.AttemptWriteToGrid(new Bullet(10, 16,-1, 0));
+			grid.AttemptWriteToGrid(new Bullet(6, 20, 0, 1));
+			grid.AttemptWriteToGrid(new Bullet(6, 5, 0, -1));
 		}
 
 		private void buttonUp_Click(object sender, System.EventArgs e)
@@ -112,7 +112,7 @@ namespace Game
 		private void ShootUp_Click(object sender, System.EventArgs e)
 		{
 			grid.MoveBullets();
-			grid.WriteToGrid(new Bullet(player.x, player.y-1, 0, -1));
+			grid.AttemptWriteToGrid(new Bullet(player.x, player.y-1, 0, -1));
 			//redraw
 			GameCanvas.Invalidate();
 		}
@@ -120,7 +120,7 @@ namespace Game
 		private void ShootRight_Click(object sender, System.EventArgs e)
 		{
 			grid.MoveBullets();
-			grid.WriteToGrid(new Bullet(player.x+1, player.y , 1, 0));
+			grid.AttemptWriteToGrid(new Bullet(player.x+1, player.y , 1, 0));
 			//redraw
 			GameCanvas.Invalidate();
 		}
@@ -128,7 +128,7 @@ namespace Game
 		private void ShootDown_Click(object sender, System.EventArgs e)
 		{
 			grid.MoveBullets();
-			grid.WriteToGrid(new Bullet(player.x, player.y + 1, 0, 1));
+			grid.AttemptWriteToGrid(new Bullet(player.x, player.y + 1, 0, 1));
 			//redraw
 			GameCanvas.Invalidate();
 		}
@@ -136,7 +136,7 @@ namespace Game
 		private void ShootLeft_Click(object sender, System.EventArgs e)
 		{
 			grid.MoveBullets();
-			grid.WriteToGrid(new Bullet(player.x - 1, player.y, -1, 0));
+			grid.AttemptWriteToGrid(new Bullet(player.x - 1, player.y, -1, 0));
 			//redraw
 			GameCanvas.Invalidate();
 		}

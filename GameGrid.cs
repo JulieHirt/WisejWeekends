@@ -36,9 +36,9 @@ public class GameGrid
 	/// Write to a grid square
 	/// </summary>
 	/// <param name="g">GameObject to be written to the grid</param>
-	public void WriteToGrid(GameObject g)
+	public void AttemptWriteToGrid(GameObject g)
 	{
-		if (CheckValidCoordinates(g.x, g.y))
+		if (CheckValidCoordinates(g.x, g.y) && grid[g.x, g.y] == null)
 		{
 				grid[g.x, g.y] = g;
 			if(g.GetType() == typeof(Bullet))
