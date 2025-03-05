@@ -108,5 +108,37 @@ namespace Game
 				}
 			}
 		}
+
+		private void ShootUp_Click(object sender, System.EventArgs e)
+		{
+			grid.MoveBullets();
+			grid.WriteToGrid(new Bullet(player.x, player.y-1, 0, -1));
+			//redraw
+			GameCanvas.Invalidate();
+		}
+
+		private void ShootRight_Click(object sender, System.EventArgs e)
+		{
+			grid.MoveBullets();
+			grid.WriteToGrid(new Bullet(player.x+1, player.y , 1, 0));
+			//redraw
+			GameCanvas.Invalidate();
+		}
+
+		private void ShootDown_Click(object sender, System.EventArgs e)
+		{
+			grid.MoveBullets();
+			grid.WriteToGrid(new Bullet(player.x, player.y + 1, 0, 1));
+			//redraw
+			GameCanvas.Invalidate();
+		}
+
+		private void ShootLeft_Click(object sender, System.EventArgs e)
+		{
+			grid.MoveBullets();
+			grid.WriteToGrid(new Bullet(player.x - 1, player.y, -1, 0));
+			//redraw
+			GameCanvas.Invalidate();
+		}
 	}
 }

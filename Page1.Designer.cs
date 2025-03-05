@@ -111,6 +111,7 @@
 			this.ShootUp.Name = "ShootUp";
 			this.ShootUp.Size = new System.Drawing.Size(50, 50);
 			this.ShootUp.TabIndex = 10;
+			this.ShootUp.Click += new System.EventHandler(this.ShootUp_Click);
 			// 
 			// ShootRight
 			// 
@@ -119,6 +120,7 @@
 			this.ShootRight.Name = "ShootRight";
 			this.ShootRight.Size = new System.Drawing.Size(50, 50);
 			this.ShootRight.TabIndex = 11;
+			this.ShootRight.Click += new System.EventHandler(this.ShootRight_Click);
 			// 
 			// ShootLeft
 			// 
@@ -127,6 +129,7 @@
 			this.ShootLeft.Name = "ShootLeft";
 			this.ShootLeft.Size = new System.Drawing.Size(50, 50);
 			this.ShootLeft.TabIndex = 12;
+			this.ShootLeft.Click += new System.EventHandler(this.ShootLeft_Click);
 			// 
 			// ShootDown
 			// 
@@ -135,6 +138,7 @@
 			this.ShootDown.Name = "ShootDown";
 			this.ShootDown.Size = new System.Drawing.Size(50, 50);
 			this.ShootDown.TabIndex = 13;
+			this.ShootDown.Click += new System.EventHandler(this.ShootDown_Click);
 			// 
 			// Page1
 			// 
