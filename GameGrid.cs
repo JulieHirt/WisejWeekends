@@ -91,14 +91,20 @@ public class GameGrid
 			//	}
 			//}
 		}
-		//No need to run this code- nothing changes
-		//else
-		//{
-		//	//new coordinates are not valid- object would go off the grid
-		//	g.x = xPrevious;
-		//	g.y = yPrevious;
-		//}
-		
+		else//new coordinates are not valid- object would go off the grid
+		{
+			
+			if(g.GetType() == typeof(Bullet)) //bullet gets deleted
+			{
+				grid[g.x, g.y] = null;
+			}
+			else //everything else is prevented from moving off of the grid
+			{
+				g.x = xPrevious;
+				g.y = yPrevious;
+			}
+		}
+
 	}
 
 
