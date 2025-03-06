@@ -74,29 +74,30 @@ public class GameGrid
 				g.y = yNew;
 			}
 			//No need to run this code- nothing changes
-			//else //something is moving into the same space as something else- collision code
-			////TODO: Add more collisions here eg, bullet and player
-			//{
-			//	//if player tries to occupy the same space as a wall
-			//	if(grid[xPrevious, yPrevious].GetType() == typeof(Player) && grid[xNew, yNew].GetType() == typeof(Wall))
-			//	{
-			//		g.x = xPrevious;
-			//		g.y = yPrevious;
-			//	}
-			//	else
-			//	{
-			//		//something is moving into the same space as something else- stop it
-			//		g.x = xPrevious;
-			//		g.y = yPrevious;
-			//	}
-			//}
+			else //something is moving into the same space as something else- collision code
+				 //TODO: Add more collisions here eg, bullet and player
+			{
+				//if player tries to occupy the same space as a wall
+				//if (grid[xPrevious, yPrevious].GetType() == typeof(Player) && grid[xNew, yNew].GetType() == typeof(Wall))
+				//{
+				//	g.x = xPrevious;
+				//	g.y = yPrevious;
+				//}
+				
+				//else
+				//{
+				//	//something is moving into the same space as something else- stop it
+				//	g.x = xPrevious;
+				//	g.y = yPrevious;
+				//}
+			}
 		}
 		else//new coordinates are not valid- object would go off the grid
 		{
 			
-			if(g.GetType() == typeof(Bullet)) //bullet gets deleted
+			if(g.GetType() == typeof(Bullet)) 
 			{
-				grid[g.x, g.y] = null;
+				grid[g.x, g.y] = null;//bullet gets deleted
 			}
 			else //everything else is prevented from moving off of the grid
 			{
@@ -152,10 +153,51 @@ public class GameGrid
 	/// </summary>
 	public void MoveBullets()
 	{
-
 		foreach (Bullet bullet in bulletList)
 		{
-			MovementAttemptWriteToGrid(bullet, bullet.x + bullet.xVelocity, bullet.y + bullet.yVelocity);
+			BulletMovementAttemptWriteToGrid(bullet, bullet.x + bullet.xVelocity, bullet.y + bullet.yVelocity);
 		}
+		bulletList.RemoveAll(b => b.delete);
+	}
+
+	/// <summary>
+	/// Attempts to move an object in the grid. May fail if collision happens (ie player running into wall)
+	/// </summary>
+	/// <param name="b">GameObject to be moved</param>
+	/// <param name="xNew">Potential new x coordinate of the object if movement is sucessful</param>
+	/// <param name="yNew">Potential new y coordinate of the object if movement is sucessful</param>
+	/// <returns>The new location of the object if it sucessfully moved; The old location if it did not move.</returns>
+	public void BulletMovementAttemptWriteToGrid(Bullet b, int xNew, int yNew)
+	{
+		int xPrevious = b.x;
+		int yPrevious = b.y;
+		if (CheckValidCoordinates(xNew, yNew))
+		{
+			//can move into empty space
+			if (grid[xNew, yNew] == null)
+			{
+				grid[xNew, yNew] = b;
+				grid[xPrevious, yPrevious] = null;
+
+				//set the x and y coordinates of the GameObject to the new position
+				//important so that they match the coordinates of the grid
+				b.x = xNew;
+				b.y = yNew;
+			}
+			else //bullet is moving into the same space as something else- collision code
+			{
+				if (grid[xNew, yNew].GetType() == typeof(Wall))
+				{
+					grid[xPrevious, yPrevious] = null;//bullet gets deleted
+					b.delete = true;
+				}
+			}
+		}
+		else//new coordinates are not valid- object would go off the grid
+		{
+				grid[b.x, b.y] = null;//bullet gets deleted
+			b.delete = true;
+		}
+
 	}
 }
