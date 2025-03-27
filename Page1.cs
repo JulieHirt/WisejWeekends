@@ -46,31 +46,31 @@ namespace Game
 
 		private void buttonUp_Click(object sender, System.EventArgs e)
 		{
+			grid.MoveBullets();
 			//note that the upper left corner is 0,0 - thus to go up 1 square we subtract 1 from the y coordinate
 			grid.MovementAttemptWriteToGrid(player, player.x, player.y-1);
-			grid.MoveBullets();
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonDown_Click(object sender, System.EventArgs e)
 		{
+			grid.MoveBullets();
 			//note that the upper left corner is 0,0 - thus to go down 1 square we add 1 to the y coordinate
 			grid.MovementAttemptWriteToGrid(player, player.x, player.y + 1);
-			grid.MoveBullets();
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonRight_Click(object sender, System.EventArgs e)
 		{
-			grid.MovementAttemptWriteToGrid(player, player.x+1, player.y);
 			grid.MoveBullets();
+			grid.MovementAttemptWriteToGrid(player, player.x+1, player.y);
 			//redraw
 			GameCanvas.Invalidate();
 		}
 		private void buttonLeft_Click(object sender, System.EventArgs e)
 		{
-			grid.MovementAttemptWriteToGrid(player, player.x-1, player.y);
 			grid.MoveBullets();
+			grid.MovementAttemptWriteToGrid(player, player.x-1, player.y);
 			//redraw
 			GameCanvas.Invalidate();
 		}
